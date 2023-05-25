@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   createUserController,
   deleteUserController,
+  listUserByIdController,
   listUserController,
   updateUserController,
 } from "../controllers/user.controllers";
@@ -10,6 +11,7 @@ import { ensureEmailExistsMiddleware } from "../middlewares/ensureEmailExistsMid
 import { ensureTokenIsValid } from "../middlewares/ensureTokenIsValid.middleware";
 import { ensureUserExist } from "../middlewares/ensureUserExist.middleware";
 import { userCreateSchema, userUpdateSchema } from "../schemas/user.schema";
+import { ensureUserPermissions } from "../middlewares/ensureUserPermission.middleware";
 
 export const userRoutes: Router = Router();
 
@@ -25,12 +27,22 @@ userRoutes.patch(
   ensureUserExist,
   ensureTokenIsValid,
   ensureDataIsValid(userUpdateSchema),
+  ensureUserPermissions,
   updateUserController
 );
 
 userRoutes.delete(
   "/:id",
+
   ensureUserExist,
   ensureTokenIsValid,
+  ensureUserPermissions,
   deleteUserController
+);
+
+userRoutes.get(
+  "/:id",
+  ensureTokenIsValid,
+  ensureUserPermissions,
+  listUserByIdController
 );

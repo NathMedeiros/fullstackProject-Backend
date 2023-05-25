@@ -14,6 +14,7 @@ import {
 } from "../schemas/contact.schema";
 import { ensureDataIsValid } from "../middlewares/ensureDataIsValid.middleware";
 import { ensureContactExist } from "../middlewares/ensureContactExist.middleware";
+import { ensureContactPermissions } from "../middlewares/ensurecontactPermission.middleware";
 
 export const contactRoutes: Router = Router();
 
@@ -24,7 +25,13 @@ contactRoutes.post(
   ensureDataIsValid(contactCreateSchema),
   createContactsController
 );
-contactRoutes.get("/:id", ensureTokenIsValid, listContactByIdController);
+contactRoutes.get(
+  "/:id",
+
+  ensureTokenIsValid,
+  ensureContactPermissions,
+  listContactByIdController
+);
 
 contactRoutes.get("", ensureTokenIsValid, listContactController);
 
@@ -32,6 +39,7 @@ contactRoutes.delete(
   "/:id",
   ensureContactExist,
   ensureTokenIsValid,
+  ensureContactPermissions,
   deleteContactController
 );
 
@@ -39,6 +47,7 @@ contactRoutes.patch(
   "/:id",
   ensureContactExist,
   ensureTokenIsValid,
+  ensureContactPermissions,
   ensureDataIsValid(contactUpdateSchema),
   updateContactController
 );

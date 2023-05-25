@@ -4,6 +4,7 @@ import { createUserService } from "../services/user/createUser.service";
 import { deleteUserService } from "../services/user/deleteUser.service";
 import { listUsersService } from "../services/user/listUsers.service";
 import { updateUserService } from "../services/user/updateUser.service";
+import { listUserByIdService } from "../services/user/listUserById.service";
 
 export const createUserController = async (
   request: Request,
@@ -40,4 +41,15 @@ export const deleteUserController = async (
   await deleteUserService(parseInt(request.params.id));
 
   return response.status(204).send();
+};
+
+export const listUserByIdController = async (
+  request: Request,
+  response: Response
+) => {
+  const userId = parseInt(request.params.id);
+  const tokenId = parseInt(request.user.id);
+  const user = await listUserByIdService(userId, tokenId);
+
+  return response.json(user);
 };

@@ -23,8 +23,5 @@ export const listContactByIdService = async (
     throw new AppError("Contact not found", 404);
   }
 
-  if (contact.user.id !== tokenId) {
-    throw new AppError("Unauthorized!", 401);
-  }
   return contact;
 };
