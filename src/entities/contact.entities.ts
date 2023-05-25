@@ -3,13 +3,8 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  OneToMany,
-  BeforeInsert,
-  BeforeUpdate,
-  ManyToMany,
-  JoinTable,
-  UpdateDateColumn,
-  DeleteDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from "typeorm";
 import { User } from "./users.entites";
 
@@ -21,22 +16,16 @@ export class Contacts {
   @Column({ type: "varchar", length: 45 })
   name: string;
 
-  @Column({ type: "varchar", unique: true, length: 45 })
+  @Column({ type: "varchar", length: 45 })
   email: string;
 
-  @Column({ type: "varchar", length: 15 })
+  @Column({ type: "varchar", length: 12 })
   phone: string;
 
   @CreateDateColumn({ type: "date" })
   createdAt: string;
 
-  @UpdateDateColumn({ type: "date" })
-  updatedAt: string;
-
-  @DeleteDateColumn({ type: "date", nullable: true })
-  deletedAt: string;
-
-  @ManyToMany(() => User)
-  @JoinTable()
-  users: User[];
+  @ManyToOne(() => User, (users) => users.contacts)
+  @JoinColumn()
+  user: User;
 }

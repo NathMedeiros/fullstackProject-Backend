@@ -23,6 +23,9 @@ export class User {
   @Column({ type: "varchar", unique: true, length: 45 })
   email: string;
 
+  @Column({ type: "varchar", length: 12 })
+  phone: string;
+
   @Column({ type: "varchar", length: 120 })
   password: string;
 
@@ -44,6 +47,6 @@ export class User {
     }
   }
 
-  @OneToMany(() => Contacts, (contacts) => contacts.users)
+  @OneToMany(() => Contacts, (contacts) => contacts.user)
   contacts: Contacts[];
 }
