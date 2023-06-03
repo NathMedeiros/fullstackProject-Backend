@@ -27,8 +27,6 @@ https://localhost:3000/
 
 Diagrama da API definindo as relações entre as tabelas do banco de dados.
 
-![DER](DER.png)
-
 ---
 
 ## 4 - Instalação e uso
