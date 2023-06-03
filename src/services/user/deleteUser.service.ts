@@ -9,7 +9,18 @@ export const deleteUserService = async (idUser: number): Promise<void> => {
     where: {
       id: idUser,
     },
+    relations: ["contacts"],
   });
 
-  await userRepository.remove(user!);
+  if (!user) {
+    throw new Error("Cliente não encontrado");
+  }
+
+  const contacts = user.contacts;
+
+  for (const contact of contacts) {
+    await userRepository.manager.remove(contact);
+  }
+
+  await userRepository.remove(user);
 };

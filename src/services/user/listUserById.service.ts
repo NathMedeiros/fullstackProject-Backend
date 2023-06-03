@@ -14,6 +14,9 @@ export const listUserByIdService = async (
     where: {
       id: userId,
     },
+    relations: {
+      contacts: true,
+    },
   });
 
   if (!user) {

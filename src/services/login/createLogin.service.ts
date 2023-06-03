@@ -26,7 +26,7 @@ export const createLoginService = async (
     throw new AppError("Invalid credentials", 401);
   }
 
-  const token: string = jwt.sign({}, process.env.SECRET_KEY!, {
+  const token: string = jwt.sign({ id: user.id }, process.env.SECRET_KEY!, {
     expiresIn: "24h",
     subject: String(user.id),
   });

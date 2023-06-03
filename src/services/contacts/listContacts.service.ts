@@ -1,14 +1,16 @@
 import { Repository } from "typeorm";
-import { IReturnAllContact } from "../../interfaces/contact.interfaces";
+import { IContact } from "../../interfaces/contact.interfaces";
 import { Contacts } from "../../entities";
 import { AppDataSource } from "../../data-source";
-import { returnAllContactSchema } from "../../schemas/contact.schema";
 
-export const listContactService = async (): Promise<IReturnAllContact> => {
+export const listContactService = async (): Promise<IContact[]> => {
   const contactRepository: Repository<Contacts> =
     AppDataSource.getRepository(Contacts);
-  const contactsList: Array<Contacts> = await contactRepository.find();
-  const contacts = returnAllContactSchema.parse(contactsList);
+  const contactsList: IContact[] = await contactRepository.find({
+    relations: {
+      user: true,
+    },
+  });
 
-  return contacts;
+  return contactsList;
 };
