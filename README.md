@@ -23,12 +23,6 @@ https://localhost:3000/
 
 ---
 
-## 3 - Diagrama
-
-Diagrama da API definindo as relações entre as tabelas do banco de dados.
-
----
-
 ## 4 - Instalação e uso
 
 ### Requisitos:
