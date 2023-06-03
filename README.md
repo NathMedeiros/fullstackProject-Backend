@@ -68,16 +68,16 @@ yarn dev ou npm run dev
 
 | Método | Rota        | Descrição                                      |
 | ------ | ----------- | ---------------------------------------------- |
-| POST   | /users      | Criação de um cliente.                         |
-| PATCH  | /users/id   | Edita o cliente.                               |
-| DELETE | /users/id   | Deleta o cliente.                              |
+| POST   | /users      | Criação de um usuario.                         |
+| PATCH  | /users/id   | Edita o usuario.                               |
+| DELETE | /users/id   | Deleta o usuario.                              |
 | POST   | /login      | Retorna o token.                               |
-| POST   | /contact    | Cria um contato para o cliente.                |
-| GET    | /contact    | Lista todos os contatos do clientecliente.     |
-| GET    | /contact/id | Retorna o contato específico do cliente.       |
-| PATCH  | /contact/id | Edita o contato específico do cliente.         |
-| DELETE | /contact/id | Deleta o contato específico do cliente.        |
-| GET    | /report     | pdf - relatorio de contatos do cliente logado. |
+| POST   | /contact    | Cria um contato para o usuario.                |
+| GET    | /contact    | Lista todos os contatos do usuario             |
+| GET    | /contact/id | Retorna o contato específico do usuario.       |
+| PATCH  | /contact/id | Edita o contato específico do usuario.         |
+| DELETE | /contact/id | Deleta o contato específico do usuario.        |
+| GET    | /report     | pdf - relatorio de contatos do usuario logado. |
 | GET    | /api-docs/  | documentação swagger                           |
 
 ---
